@@ -8,15 +8,12 @@ const serviceRoutes = require("./routes/serviceRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const searchRoutes = require("./routes/searchRoutes");
-
+const process = require('process');
 const mongoose = require("mongoose");
-
-// remember to use your own connection string in the following line
-const connectionString =
-  "mongodb+srv://pearl:pearl@pearl.rty8o1j.mongodb.net/?retryWrites=true&w=majority";
+const connection = require("./utils/connection")
 
 mongoose
-  .connect(connectionString, {
+  .connect(connection.atlas, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -24,7 +21,7 @@ mongoose
   .catch((err) => console.log(err));
 
 const app = express();
-const PORT = 5001; // You can use any available port
+const port = process.env.PORT || 5001; // You can use any available port
 
 // Middleware
 app.use(cors());
@@ -42,6 +39,6 @@ app.use("/booking", bookingRoutes);
 app.use("/api/search", searchRoutes);
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
 });
