@@ -31,9 +31,9 @@ app.use(bodyParser.json());
 app.use(loginRoutes);
 
 //  Database endpoints
-app.use("/user", userRoutes);
+app.use("/api/user", userRoutes);
 app.use("/professional", professionalRoutes);
-app.use("/service", serviceRoutes);
+app.use("/api/service", serviceRoutes);
 app.use("/review", reviewRoutes);
 app.use("/booking", bookingRoutes);
 app.use("/api/search", searchRoutes);
