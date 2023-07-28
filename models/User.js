@@ -1,9 +1,31 @@
 const mongoose = require("mongoose");
 
-const userSchema = new mongoose.Schema({
-  username: String,
-  password: String, // this should be hashed, not stored as plain text
-  email: String,
-});
+const User = new mongoose.Schema(
+  {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    phone: { type: Number, required: true },
+    address: { type: String, required: true },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    zip: { type: Number, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true }
+  },
+  {
+    collection: 'users'
+  }
+);
 
-module.exports = mongoose.model("User", userSchema);
+/*
+const User = new mongoose.Schema(
+  {
+    username: String,
+    email: String,
+    password: String,
+    role: String
+  }
+);
+*/
+
+module.exports = mongoose.model("User", User);

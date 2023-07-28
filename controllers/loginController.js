@@ -1,11 +1,14 @@
-const users = require('../constants');
+const User = require('../models/User');
 
-const login = (req, res) => {
-    const { email, password } = req.body;
-    const user = users.find((u) => u.email === email && u.password === password);
+const login = async (req, res) => {
+    const user = await User.findOne({
+        email: req.body.email,
+        password: req.body.password
+    });
 
     if (user) {
-        res.json({ success: true, message: 'Login successful', user });
+        res.json({ success: true, message: 'Login successful', user: user });
+        console.log(res);
     } else {
         res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
