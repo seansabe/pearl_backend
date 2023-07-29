@@ -50,3 +50,13 @@ exports.deleteOne = async (req, res) => {
     res.status(400).json(err);
   }
 };
+
+exports.getOneByEmail = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email });
+    if (!user) return res.status(404).json({ message: "User not found by email" });
+    res.status(200).json(user);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
