@@ -11,9 +11,8 @@ const searchRoutes = require("./routes/searchRoutes");
 const process = require('process');
 const mongoose = require("mongoose");
 const connection = require("./utils/connection")
-
 mongoose
-  .connect(connection.atlas, {
+  .connect(connection.atlasTest, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })

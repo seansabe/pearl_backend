@@ -2,6 +2,7 @@ const User = require("../models/User");
 
 exports.create = async (req, res) => {
   const user = new User(req.body);
+  console.log(user);
   try {
     const savedUser = await user.save();
     res.status(201).json(savedUser);
@@ -14,6 +15,16 @@ exports.getAll = async (req, res) => {
   try {
     const users = await User.find({});
     res.status(200).json(users);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
+exports.getOneByEmail = async (req, res) => {
+  try {
+    const user = await User.findOne({ email: req.params.email });
+    if (!user) return res.status(404).json({ message: "User not found" });
+    res.status(200).json(user);
   } catch (err) {
     res.status(400).json(err);
   }
@@ -32,6 +43,16 @@ exports.getOne = async (req, res) => {
 exports.updateOne = async (req, res) => {
   try {
     const updatedUser = await User.updateOne({ _id: req.params.id }, req.body);
+    if (!updatedUser)
+      return res.status(404).json({ message: "User not found" });
+    res.status(200).json(updatedUser);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+exports.updateOneByEmail = async (req, res) => {
+  try {
+    const updatedUser = await User.updateOne({ email: req.params.email }, req.body);
     if (!updatedUser)
       return res.status(404).json({ message: "User not found" });
     res.status(200).json(updatedUser);
