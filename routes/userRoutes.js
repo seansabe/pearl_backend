@@ -24,4 +24,7 @@ router.patch("/:id", UserController.updateOne);
 // Route to delete a user by id
 router.delete("/:id", UserController.deleteOne);
 
+// Route to get one by user email
+router.get("/email/:email", UserController.getOneByEmail);
+
 module.exports = router;
