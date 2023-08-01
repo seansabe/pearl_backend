@@ -20,15 +20,6 @@ exports.getAll = async (req, res) => {
   }
 };
 
-exports.getOneByEmail = async (req, res) => {
-  try {
-    const user = await User.findOne({ email: req.params.email });
-    if (!user) return res.status(404).json({ message: "User not found" });
-    res.status(200).json(user);
-  } catch (err) {
-    res.status(400).json(err);
-  }
-};
 
 exports.getOne = async (req, res) => {
   try {
