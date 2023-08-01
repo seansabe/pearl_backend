@@ -12,7 +12,7 @@ const process = require('process');
 const mongoose = require("mongoose");
 const connection = require("./utils/connection")
 mongoose
-  .connect(connection.atlasTest, {
+  .connect(connection.atlas, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
