@@ -12,13 +12,19 @@ router.get("/", UserController.getAll);
 // Route to get one user by id
 router.get("/:id", UserController.getOne);
 
-// Route to get one by user email
-router.get("/email/:email", UserController.getOneByEmail);
+// Route to get one user by email
+router.get("/:email", UserController.getOneByEmail);
 
 // Route to update a user by id
 router.patch("/:id", UserController.updateOne);
 
+// Route to update a user by email
+// router.patch("/:email", UserController.updateOneByEmail);
+
 // Route to delete a user by id
 router.delete("/:id", UserController.deleteOne);
+
+// Route to get one by user email
+router.get("/email/:email", UserController.getOneByEmail);
 
 module.exports = router;
