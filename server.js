@@ -8,9 +8,9 @@ const serviceRoutes = require("./routes/serviceRoutes");
 const reviewRoutes = require("./routes/reviewRoutes");
 const bookingRoutes = require("./routes/bookingRoutes");
 const searchRoutes = require("./routes/searchRoutes");
-const process = require('process');
+const process = require("process");
 const mongoose = require("mongoose");
-const connection = require("./utils/connection")
+const connection = require("./utils/connection");
 mongoose
   .connect(connection.atlas, {
     useNewUrlParser: true,
@@ -34,7 +34,7 @@ app.use("/api/user", userRoutes);
 app.use("/professional", professionalRoutes);
 app.use("/api/service", serviceRoutes);
 app.use("/review", reviewRoutes);
-app.use("/booking", bookingRoutes);
+app.use("/api/booking", bookingRoutes);
 app.use("/api/search", searchRoutes);
 
 // Start the server
