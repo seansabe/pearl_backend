@@ -20,6 +20,15 @@ exports.getAllServices = async (req, res) => {
   }
 };
 
+exports.getServicesByUser = async (req, res) => {
+  try {
+    const services = await Service.find({ userId: req.params.id });
+    res.status(200).json(services);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.getService = async (req, res) => {
   try {
     const service = await Service.findOne({ _id: req.params.id });

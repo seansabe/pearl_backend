@@ -19,6 +19,62 @@ exports.getBookings = async (req, res) => {
   }
 };
 
+exports.getBookingsByUser = async (req, res) => {
+  try {
+    let bookings = await Booking.find({ userId: req.params.id });
+    res.status(200).send(bookings);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+exports.getUpcomingBookingsByUser = async (req, res) => {
+  try {
+    let bookings = await Booking.find({
+      user: req.params.id,
+      date: { $gte: new Date() },
+    });
+    res.status(200).send(bookings);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+exports.getBookingsByService = async (req, res) => {
+  try {
+    let bookings = await Booking.find({ serviceId: req.params.id });
+    res.status(200).send(bookings);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+
+
+exports.getUpcomingBookingsByService = async (req, res) => {
+  try {
+    let bookings = await Booking.find({
+      serviceId: req.params.id,
+      date: { $gte: new Date() },
+    });
+    res.status(200).send(bookings);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
+exports.getPastBookingsByService = async (req, res) => {
+  try {
+    let bookings = await Booking.find({
+      serviceId: req.params.id,
+      date: { $lt: new Date() },
+    });
+    res.status(200).send(bookings);
+  } catch (err) {
+    res.status(400).send(err);
+  }
+};
+
 exports.getBooking = async (req, res) => {
   try {
     let booking = await Booking.findOne({ _id: req.params.id });
