@@ -8,6 +8,8 @@ router.get("/", serviceController.getAllServices);
 
 router.get("/:id", serviceController.getService);
 
+router.get("/user/:id", serviceController.getServicesByUser);
+
 router.patch("/:id", serviceController.updateService);
 
 router.delete("/:id", serviceController.deleteService);
