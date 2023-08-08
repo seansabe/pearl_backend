@@ -1,20 +1,14 @@
 const Service = require("../models/Service");
 
-const searchListings = async (req, res) => {
-  const searchWord = req.query.search;
-
+exports.searchServices = async (req, res) => {
   try {
-    const services = await Service.find({
-      $text: {
-        $search: searchWord,
-      },
+    const keyword = req.query.search;
+    const results = await Service.find({
+      name: { $regex: keyword, $options: "i" },
     });
-    res.json(services);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.json(results);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Server error");
   }
-};
-
-module.exports = {
-  searchListings,
 };

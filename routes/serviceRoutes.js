@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const serviceController = require("../controllers/ServiceController");
+const { filterByCategory } = require("../controllers/categoryController");
 
 router.post("/", serviceController.createService);
 
@@ -13,5 +14,7 @@ router.get("/user/:id", serviceController.getServicesByUser);
 router.patch("/:id", serviceController.updateService);
 
 router.delete("/:id", serviceController.deleteService);
+
+router.get("/category/:category", filterByCategory);
 
 module.exports = router;
