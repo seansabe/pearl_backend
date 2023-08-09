@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const serviceController = require("../controllers/ServiceController");
-const { filterByCategory } = require("../controllers/categoryController");
+const { filterByCategory } = require("../controllers/CategoryController");
 
 router.post("/", serviceController.createService);
 
