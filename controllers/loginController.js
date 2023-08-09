@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-const login = async (req, res) => {
+const loginController = async (req, res) => {
     const user = await User.findOne({
         email: req.body.email,
         password: req.body.password
@@ -14,4 +14,4 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { login }
+module.exports = { loginController }
