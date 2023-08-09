@@ -1,6 +1,6 @@
 const users = require('../constants');
 
-const registerController = (req, res) => {
+const register = (req, res) => {
     const { firstName,
         lastName,
         address,
@@ -29,4 +29,4 @@ const registerController = (req, res) => {
     }
 };
 
-module.exports = { registerController }
+module.exports = { register }
